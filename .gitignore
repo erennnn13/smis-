@@ -1,0 +1,31 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.*
+
+# Database backups
+*.sql
+*.sql.gz
+
+# Keep deployment database dump
+!databasefile/superschool.sql
+
+# Dependencies
+vendor/
+node_modules/
