@@ -1,0 +1,46 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: superschool-app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+          # restart: always
+    networks:
+      - superschool
+
+  mysql:
+    image: mysql:5.7
+    container_name: superschool-db
+      # restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+      MYSQL_DATABASE: superschool
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    volumes:
+      - /home/tirthpatel/Desktop/new-ss/volume:/var/lib/mysql
+      - ./databasefile:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - superschool
+
+volumes:
+  mysql_data:
+
+networks:
+  superschool:
+    driver: bridge

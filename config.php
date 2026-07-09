@@ -1,7 +1,7 @@
 <?php
-	$dbServer = 'localhost';
-	$dbUsername = 'root';
-	$dbPassword = '';
+        $dbServer = 'superschool-db';
+	$dbUsername = 'user';
+	$dbPassword = 'root';
 	$dbDatabase = 'superschool';
 
 	$adminConfig = array(
