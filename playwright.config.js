@@ -1,10 +1,16 @@
-// @ts-check
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from '@playwright/test';
 
-module.exports = defineConfig({
-  testDir: './tests',
+export default defineConfig({
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }]
+  ],
+
   use: {
     headless: true,
-  },
-  reporter: [['list'], ['html']],
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure'
+  }
 });
+
